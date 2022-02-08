@@ -21,8 +21,12 @@ const Wrapper = styled.div`
 `
 
 const Search = styled.div`
-    display: flex;
     position: relative;
+`
+
+const InputWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
 `
 
 const Input = styled.input`
@@ -59,11 +63,25 @@ const Button = styled.button`
     }
 `
 
-const LoaderImg = styled.img`
-    animation: Loader-spin infinite 20s linear;
-    position: absolute;
-    right: -80px;
-    width: 80px;
+const LoaderImg = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+
+    img {
+        animation: Loader-spin infinite 20s linear;
+        width: 100px;
+    }
+
+    @media ${device.tablet} {
+        margin-top: 0;
+
+        img {
+            position: absolute;
+            right: -100px;
+            bottom: -5px;
+        }
+    }
 
     @keyframes Loader-spin {
         from {
@@ -235,17 +253,25 @@ function Main() {
         <Wrapper>
             {/* Search input */}
             <Search>
-                <Input
-                    placeholder="Enter the show's title..."
-                    onChange={e => setQuery(e.target.value)}
-                    onKeyPress={e => {
-                        if (e.key === 'Enter') {
-                            getDataSet()
-                        }
-                    }}
-                />
-                <Button onClick={getDataSet}>Search</Button>
-                {loading ? <LoaderImg src={Loader} alt="Loader" /> : ''}
+                <InputWrapper>
+                    <Input
+                        placeholder="Enter the show's title..."
+                        onChange={e => setQuery(e.target.value)}
+                        onKeyPress={e => {
+                            if (e.key === 'Enter') {
+                                getDataSet()
+                            }
+                        }}
+                    />
+                    <Button onClick={getDataSet}>Search</Button>
+                </InputWrapper>
+                {loading ? (
+                    <LoaderImg>
+                        <img src={Loader} alt="Loader" />
+                    </LoaderImg>
+                ) : (
+                    ''
+                )}
             </Search>
             {/* Results count */}
             {totalResults && (
