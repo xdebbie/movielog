@@ -28,6 +28,10 @@ export const themes = {
         light: `#dbdbdb`,
         dark: `rgba(49, 49, 49, 1.00)`,
     }),
+    backgroundCardHover: theme('mode', {
+        light: `#029ca726`,
+        dark: `#424242`,
+    }),
     backgroundHeader: theme('mode', {
         light: `#dbdbdb`,
         dark: `#000000`,

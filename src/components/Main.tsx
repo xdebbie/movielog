@@ -108,7 +108,7 @@ const Year = styled.div`
 
     @media ${device.tablet} {
         border-radius: 10px;
-        margin: 1rem 0;
+        margin: 1rem 0 2rem 0;
         padding: 1rem 2rem;
         text-align: left;
         width: fit-content;
@@ -135,7 +135,13 @@ const Card = styled.div`
     flex-direction: column;
     margin: 1rem auto 2rem auto;
     padding: 1rem;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
     width: 240px;
+
+    &:hover {
+        background: ${themes.backgroundCardHover};
+    }
 
     img {
         border-radius: 10px;
@@ -157,7 +163,7 @@ const Card = styled.div`
     }
 
     @media ${device.tablet} {
-        margin: 1rem 0;
+        margin: 0;
         width: 300px;
 
         img {
