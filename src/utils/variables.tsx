@@ -28,4 +28,12 @@ export const themes = {
         light: `#282c34`,
         dark: `rgba(244, 244, 245, 1.00)`,
     }),
+    footer: theme('mode', {
+        light: '#888888',
+        dark: '#888888',
+    }),
+    footerHover: theme('mode', {
+        light: 'rgba(2, 156, 167, 1)',
+        dark: 'rgba(2, 156, 167, 1)',
+    }),
 }
