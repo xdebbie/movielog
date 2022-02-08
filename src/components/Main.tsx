@@ -33,14 +33,24 @@ const Input = styled.input`
     border-radius: 10px;
     border: 2px solid ${themes.inputBorder};
     font-family: 'Archivo', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
-    height: 50px;
+    height: 40px;
     padding: 0 1rem;
     width: 100%;
 
+    ::placeholder {
+        font-size: 14px;
+    }
+
     @media ${device.tablet} {
+        font-size: 18px;
+        height: 50px;
         width: 200px;
+
+        ::placeholder {
+            font-size: 16px;
+        }
     }
 `
 
@@ -54,7 +64,7 @@ const Button = styled.button`
     font-size: 16px;
     font-weight: 500;
     margin-left: 1rem;
-    padding: 1rem 2rem;
+    padding: 0 2rem;
     transition: all 0.2s;
 
     &:hover {
@@ -77,9 +87,9 @@ const LoaderImg = styled.div`
         margin-top: 0;
 
         img {
+            bottom: -10px;
             position: absolute;
             right: -100px;
-            bottom: -5px;
         }
     }
 
