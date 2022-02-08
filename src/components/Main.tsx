@@ -58,7 +58,7 @@ function Main() {
     const [totalResults, setTotalResults] = useState('')
     const [groupedData, setGroupedData] = useState<any[]>()
 
-    const dataURL = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}&s=${query}`
+    const dataURL = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}&s=${query}`
 
     const getDataSet = () => {
         fetch(dataURL)
