@@ -2,7 +2,7 @@
 
 React & Typescript movie catalogue
 
-Click here to use it 👉🏻 [link](http://link.vercel.app)
+Click here to use it 👉🏻 [link](http://movielog.vercel.app)
 
 <!-- ![Movielog](imgur link) -->
 
