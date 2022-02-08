@@ -15,7 +15,7 @@ const Wrapper = styled.div`
     font-family: 'Archivo', sans-serif;
     flex-direction: column;
     min-height: calc(100vh - 21rem);
-    padding: 10rem 0 4rem 0;
+    padding: 10rem 2rem 4rem 2rem;
     -webkit-transition: all 0.4s;
     transition: all 0.4s;
 `
@@ -33,7 +33,11 @@ const Input = styled.input`
     font-weight: 500;
     height: 50px;
     padding: 0 1rem;
-    width: 200px;
+    width: 100%;
+
+    @media ${device.tablet} {
+        width: 200px;
+    }
 `
 
 const Button = styled.button`
@@ -73,11 +77,12 @@ const LoaderImg = styled.img`
 
 const SearchResults = styled.div`
     font-size: 16px;
+    line-height: 18px;
     margin: 1rem 0;
     text-align: center;
 
     p {
-        margin: 0.5rem auto;
+        margin: 0.3rem auto;
 
         :nth-of-type(2) {
             font-size: 14px;
@@ -87,25 +92,38 @@ const SearchResults = styled.div`
 `
 
 const Results = styled.div`
-    margin-top: 3rem;
+    @media ${device.tablet} {
+        margin-top: 3rem;
+    }
 `
 
 const Year = styled.div`
     background-color: ${themes.backgroundYear};
-    border-radius: 10px;
     font-size: 24px;
     font-weight: 700;
-    margin-bottom: 1rem;
-    padding: 1rem 2rem;
-    width: fit-content;
+    margin: 2rem 0;
+    padding: 1rem 0;
+    text-align: center;
+    width: 100vw;
+
+    @media ${device.tablet} {
+        border-radius: 10px;
+        margin: 1rem 0;
+        padding: 1rem 2rem;
+        text-align: left;
+        width: fit-content;
+    }
 `
 
 const Cards = styled.div`
+    width: 100vw;
+
     @media ${device.tablet} {
         display: grid;
         grid-gap: 2rem;
         grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
         max-width: 1000px;
+        width: 100%;
     }
 `
 
@@ -115,13 +133,13 @@ const Card = styled.div`
     box-shadow: 5px 5px 20px ${themes.boxShadowCard};
     display: flex;
     flex-direction: column;
-    margin: 1rem 0;
+    margin: 1rem auto 2rem auto;
     padding: 1rem;
-    width: 300px;
+    width: 240px;
 
     img {
         border-radius: 10px;
-        width: 300px;
+        width: 240px;
     }
 
     div {
@@ -137,6 +155,20 @@ const Card = styled.div`
     a:active {
         color: rgba(2, 156, 167, 1);
     }
+
+    @media ${device.tablet} {
+        margin: 1rem 0;
+        width: 300px;
+
+        img {
+            width: 300px;
+        }
+    }
+`
+
+const ShowTitle = styled.p`
+    font-size: 20px;
+    font-weight: 500;
 `
 
 interface MovieInfo {
@@ -229,7 +261,7 @@ function Main() {
                                 <Card key={index}>
                                     <img src={show.Poster} alt={show.Title} />
                                     <div>
-                                        <p>{show.Title}</p>
+                                        <ShowTitle>{show.Title}</ShowTitle>
                                         <p>{show.Year}</p>
                                         <a
                                             href={`https://www.imdb.com/title/${show.imdbID}`}
