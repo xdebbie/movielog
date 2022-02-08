@@ -4,7 +4,7 @@ React & Typescript movie catalogue
 
 Click here to use it 👉🏻  [link](http://movielog.vercel.app)
 
-<!-- ![Movielog](imgur link) -->
+![Movielog](https://i.imgur.com/1MzDfxj.png)
 
 <br> 
 
