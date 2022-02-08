@@ -18,6 +18,8 @@ const Nav = styled.header`
 `
 
 const Logo = styled.div`
+    display: flex;
+    flex-direction: column;
     font-family: 'Zilla Slab Highlight', cursive;
     font-size: 30px;
     font-weight: 600;
@@ -26,7 +28,16 @@ const Logo = styled.div`
         font-family: 'Inter', sans-serif;
         font-size: 14px;
         font-weight: 500;
-        margin-left: 0.6rem;
+        margin-top: 0.3rem;
+    }
+
+    @media ${device.tablet} {
+        display: block;
+
+        span {
+            margin-left: 0.6rem;
+            margin-top: 0;
+        }
     }
 `
 
