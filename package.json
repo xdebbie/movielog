@@ -48,5 +48,8 @@
     "jest-watch-typeahead": "^1.0.0",
     "mini-css-extract-plugin": "^2.4.5",
     "prettier": "^2.5.1"
+  },
+    "optionalDependencies": {
+    "fsevents": "*"
   }
 }
