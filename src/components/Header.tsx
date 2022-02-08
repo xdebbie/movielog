@@ -56,10 +56,6 @@ const Switch = styled.label`
             background-color: rgba(2, 156, 167, 1);
         }
 
-        :focus + .slider {
-            box-shadow: 0 0 1px rgba(2, 156, 167, 1);
-        }
-
         :checked + .slider:before  {
             -ms-transform: translateX(26px);
             -webkit-transform: translateX(26px);
