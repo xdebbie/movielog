@@ -20,13 +20,21 @@ export const themes = {
         light: `rgba(244, 244, 245, 1.00)`,
         dark: `rgba(31, 31, 31, 1.00)`,
     }),
+    backgroundButton: theme('mode', {
+        light: `#dbdbdb`,
+        dark: `#FFFFFF`,
+    }),
     backgroundHeader: theme('mode', {
         light: `#dbdbdb`,
         dark: `#000000`,
     }),
-    text: theme('mode', {
-        light: `#282c34`,
-        dark: `rgba(244, 244, 245, 1.00)`,
+    buttonHover: theme('mode', {
+        light: 'rgba(228, 228, 228, 0.75)',
+        dark: '#c2c2c2',
+    }),
+    inputBorder: theme('mode', {
+        light: '#dbdbdb',
+        dark: 'transparent',
     }),
     footer: theme('mode', {
         light: '#888888',
@@ -35,5 +43,9 @@ export const themes = {
     footerHover: theme('mode', {
         light: 'rgba(2, 156, 167, 1)',
         dark: 'rgba(2, 156, 167, 1)',
+    }),
+    text: theme('mode', {
+        light: `#282c34`,
+        dark: `rgba(244, 244, 245, 1.00)`,
     }),
 }

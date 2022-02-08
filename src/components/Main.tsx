@@ -9,6 +9,7 @@ const Wrapper = styled.div`
     background: ${themes.background};
     color: ${themes.text};
     display: flex;
+    font-family: 'Archivo', sans-serif;
     flex-direction: column;
     min-height: calc(100vh - 21rem);
     padding: 10rem 0 4rem 0;
@@ -19,6 +20,36 @@ const Wrapper = styled.div`
 const Search = styled.div`
     display: flex;
     position: relative;
+`
+
+const Input = styled.input`
+    border-radius: 10px;
+    border: 2px solid ${themes.inputBorder};
+    font-family: 'Archivo', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    height: 50px;
+    padding: 0 1rem;
+    width: 200px;
+`
+
+const Button = styled.button`
+    background: ${themes.backgroundButton};
+    border-radius: 10px;
+    border: transparent;
+    color: black;
+    cursor: pointer;
+    font-family: 'Archivo', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 1rem;
+    padding: 1rem 2rem;
+    transition: all 0.2s;
+
+    &:hover {
+        background: ${themes.buttonHover};
+        transition: all 0.2s;
+    }
 `
 
 const SearchResults = styled.div`
@@ -105,7 +136,7 @@ function Main() {
         <Wrapper>
             {/* Search input */}
             <Search>
-                <input
+                <Input
                     placeholder="Enter the show's title..."
                     onChange={e => setQuery(e.target.value)}
                     onKeyPress={e => {
@@ -114,7 +145,7 @@ function Main() {
                         }
                     }}
                 />
-                <button onClick={getDataSet}>Search</button>
+                <Button onClick={getDataSet}>Search</Button>
             </Search>
             {/* Results count */}
             {totalResults && (

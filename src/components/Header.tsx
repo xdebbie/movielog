@@ -25,7 +25,7 @@ const Logo = styled.div`
     font-weight: 600;
 
     span {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Archivo', sans-serif;
         font-size: 14px;
         font-weight: 500;
         margin-top: 0.3rem;
