@@ -24,9 +24,21 @@ export const themes = {
         light: `#dbdbdb`,
         dark: `#FFFFFF`,
     }),
+    backgroundCard: theme('mode', {
+        light: `#dbdbdb`,
+        dark: `rgba(49, 49, 49, 1.00)`,
+    }),
     backgroundHeader: theme('mode', {
         light: `#dbdbdb`,
         dark: `#000000`,
+    }),
+    backgroundYear: theme('mode', {
+        light: `#ebebeb`,
+        dark: `rgba(49, 49, 49, 1.00)`,
+    }),
+    boxShadowCard: theme('mode', {
+        light: `#979797`,
+        dark: `#1b1b1b`,
     }),
     buttonHover: theme('mode', {
         light: 'rgba(228, 228, 228, 0.75)',

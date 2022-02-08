@@ -86,11 +86,17 @@ const SearchResults = styled.div`
     }
 `
 
+const Results = styled.div`
+    margin-top: 3rem;
+`
+
 const Year = styled.div`
+    background-color: ${themes.backgroundYear};
     border-radius: 10px;
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 1rem;
+    padding: 1rem 2rem;
     width: fit-content;
 `
 
@@ -101,9 +107,35 @@ const Cards = styled.div`
         grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
         max-width: 1000px;
     }
+`
+
+const Card = styled.div`
+    background: ${themes.backgroundCard};
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px ${themes.boxShadowCard};
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+    padding: 1rem;
+    width: 300px;
 
     img {
-        width: 200px;
+        border-radius: 10px;
+        width: 300px;
+    }
+
+    div {
+        margin-top: auto;
+    }
+
+    a,
+    a:visited {
+        color: #979797;
+    }
+
+    a:hover,
+    a:active {
+        color: rgba(2, 156, 167, 1);
     }
 `
 
@@ -190,11 +222,11 @@ function Main() {
             {/* Cards */}
             {groupedData &&
                 groupedData.map((year, index) => (
-                    <div key={index}>
+                    <Results key={index}>
                         <Year>{year[0]}</Year>
                         <Cards>
                             {year[1].map((show: any, index: number) => (
-                                <div key={index}>
+                                <Card key={index}>
                                     <img src={show.Poster} alt={show.Title} />
                                     <div>
                                         <p>{show.Title}</p>
@@ -207,10 +239,10 @@ function Main() {
                                             See this title on IMDb
                                         </a>
                                     </div>
-                                </div>
+                                </Card>
                             ))}
                         </Cards>
-                    </div>
+                    </Results>
                 ))}
         </Wrapper>
     )
