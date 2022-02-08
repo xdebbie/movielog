@@ -36,12 +36,24 @@ const SearchResults = styled.div`
     }
 `
 
+const Year = styled.div`
+    border-radius: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    width: fit-content;
+`
+
 const Cards = styled.div`
     @media ${device.tablet} {
         display: grid;
         grid-gap: 2rem;
         grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
         max-width: 1000px;
+    }
+
+    img {
+        width: 200px;
     }
 `
 
@@ -118,7 +130,7 @@ function Main() {
             {groupedData &&
                 groupedData.map((year, index) => (
                     <div key={index}>
-                        <div>{year[0]}</div>
+                        <Year>{year[0]}</Year>
                         <Cards>
                             {year[1].map((show: any, index: number) => (
                                 <div key={index}>
