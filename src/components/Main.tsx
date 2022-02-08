@@ -96,6 +96,11 @@ function Main() {
                 <input
                     placeholder="Enter the show's title..."
                     onChange={e => setQuery(e.target.value)}
+                    onKeyPress={e => {
+                        if (e.key === 'Enter') {
+                            getDataSet()
+                        }
+                    }}
                 />
                 <button onClick={getDataSet}>Search</button>
             </Search>

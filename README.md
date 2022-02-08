@@ -2,7 +2,7 @@
 
 React & Typescript movie catalogue
 
-Click here to use it 👉🏻 [link](http://movielog.vercel.app)
+Click here to use it 👉🏻  [link](http://movielog.vercel.app)
 
 <!-- ![Movielog](imgur link) -->
 
@@ -12,6 +12,12 @@ Click here to use it 👉🏻 [link](http://movielog.vercel.app)
 
 ### ✨ IMDb title search
 Search your favourite show and see what comes up from the IMDb database
+### ✨ Keyboard input
+You can perform a search by hitting the `Return` button
+### ✨ Themes
+Two themes to choose from: light & dark
+### ✨ Mobile & tablet friendly
+Fully responsive, it works on all devices
 
 <br>
 
