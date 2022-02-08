@@ -4,6 +4,9 @@ import styled from 'styled-components'
 // Components & utils
 import { device, themes } from '../utils/variables'
 
+// Assets
+import Loader from '../assets/loader.svg'
+
 const Wrapper = styled.div`
     align-items: center;
     background: ${themes.background};
@@ -49,6 +52,22 @@ const Button = styled.button`
     &:hover {
         background: ${themes.buttonHover};
         transition: all 0.2s;
+    }
+`
+
+const LoaderImg = styled.img`
+    animation: Loader-spin infinite 20s linear;
+    position: absolute;
+    right: -80px;
+    width: 80px;
+
+    @keyframes Loader-spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
     }
 `
 
@@ -98,12 +117,15 @@ interface MovieInfo {
 
 function Main() {
     const [query, setQuery] = useState('')
+    const [loading, setLoading] = useState(false)
     const [totalResults, setTotalResults] = useState('')
     const [groupedData, setGroupedData] = useState<any[]>()
 
     const dataURL = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}&s=${query}`
 
     const getDataSet = () => {
+        setLoading(true)
+
         fetch(dataURL)
             .then(response => {
                 return response.json()
@@ -122,10 +144,17 @@ function Main() {
                         }
                     )
                 )
-                // Show total number of results
-                setTotalResults(data['totalResults'])
-                // Store the new data grouped by descending year
-                setGroupedData(groupedByYear.reverse())
+
+                // Create a fake loading time of 1s so the loader appears
+                setTimeout(function () {
+                    setLoading(false)
+
+                    // Show total number of results
+                    setTotalResults(data['totalResults'])
+
+                    // Store the new data grouped by descending year
+                    setGroupedData(groupedByYear.reverse())
+                }, 1000)
             })
             .catch(error => {
                 console.log(error)
@@ -146,6 +175,7 @@ function Main() {
                     }}
                 />
                 <Button onClick={getDataSet}>Search</Button>
+                {loading ? <LoaderImg src={Loader} alt="Loader" /> : ''}
             </Search>
             {/* Results count */}
             {totalResults && (
