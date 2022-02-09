@@ -34,7 +34,7 @@ export const themes = {
     }),
     backgroundHeader: theme('mode', {
         light: `#dbdbdb`,
-        dark: `#000000`,
+        dark: `#0f0f0f`,
     }),
     backgroundYear: theme('mode', {
         light: `#ebebeb`,
