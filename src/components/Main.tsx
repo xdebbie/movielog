@@ -6,6 +6,7 @@ import { device, themes } from '../utils/variables'
 
 // Assets
 import Loader from '../assets/loader.svg'
+import Placeholder from '../assets/placeholder.png'
 
 const Wrapper = styled.div`
     align-items: center;
@@ -321,10 +322,22 @@ function Main() {
                                             {year[1].map(
                                                 (show: any, index: number) => (
                                                     <Card key={index}>
-                                                        <img
-                                                            src={show.Poster}
-                                                            alt={show.Title}
-                                                        />
+                                                        {show.Poster ===
+                                                        'N/A' ? (
+                                                            <img
+                                                                src={
+                                                                    Placeholder
+                                                                }
+                                                                alt={show.Title}
+                                                            />
+                                                        ) : (
+                                                            <img
+                                                                src={
+                                                                    show.Poster
+                                                                }
+                                                                alt={show.Title}
+                                                            />
+                                                        )}
                                                         <div>
                                                             <ShowTitle>
                                                                 {show.Title}
