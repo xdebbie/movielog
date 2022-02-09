@@ -218,6 +218,7 @@ function Main() {
     const [loading, setLoading] = useState(false)
     const [totalResults, setTotalResults] = useState('')
     const [groupedData, setGroupedData] = useState<any[]>()
+    const [isUndefined, setIsUndefined] = useState<boolean>()
 
     const dataURL = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}&s=${query}`
 
@@ -229,30 +230,37 @@ function Main() {
                 return response.json()
             })
             .then(data => {
-                // Reduce array to group by Year
-                const groupedByYear = Object.entries(
-                    data.Search.reduce(
-                        (acc: any, curr: any) => {
-                            acc[curr.Year] = acc[curr.Year] || []
-                            acc[curr.Year].push(curr)
-                            return acc
-                        },
-                        {} as {
-                            [Key: string]: Array<MovieInfo>
-                        }
+                if (data.Search === undefined) {
+                    // Create a fake loading time of 1s so the loader appears
+                    setTimeout(function () {
+                        setIsUndefined(true)
+                        setLoading(false)
+                    }, 1000)
+                } else {
+                    setIsUndefined(false)
+
+                    // Reduce array to group by Year
+                    const groupedByYear = Object.entries(
+                        data.Search.reduce(
+                            (acc: any, curr: any) => {
+                                acc[curr.Year] = acc[curr.Year] || []
+                                acc[curr.Year].push(curr)
+                                return acc
+                            },
+                            {} as {
+                                [Key: string]: Array<MovieInfo>
+                            }
+                        )
                     )
-                )
 
-                // Create a fake loading time of 1s so the loader appears
-                setTimeout(function () {
-                    setLoading(false)
-
-                    // Show total number of results
-                    setTotalResults(data['totalResults'])
-
-                    // Store the new data grouped by descending year
-                    setGroupedData(groupedByYear.reverse())
-                }, 1000)
+                    setTimeout(function () {
+                        setLoading(false)
+                        // Show total number of results
+                        setTotalResults(data['totalResults'])
+                        // Store the new data grouped by descending year
+                        setGroupedData(groupedByYear.reverse())
+                    }, 1000)
+                }
             })
             .catch(error => {
                 console.log(error)
@@ -275,49 +283,72 @@ function Main() {
                     />
                     <Button onClick={getDataSet}>Search</Button>
                 </InputWrapper>
-                {loading ? (
+                {loading && (
                     <LoaderImg>
                         <img src={Loader} alt="Loader" />
                     </LoaderImg>
-                ) : (
-                    ''
                 )}
             </Search>
-            {/* Results count */}
-            {totalResults && (
-                <SearchResults>
-                    <p>Your search returned {totalResults} results.</p>
-                    <p>
-                        Can't see what you were looking for? Try being more
-                        specific.
-                    </p>
-                </SearchResults>
+            {!loading && (
+                <>
+                    {/* Show message if query is undefined */}
+                    {isUndefined ? (
+                        <SearchResults>
+                            <p>Your search hasn't returned any results.</p>
+                            <p>Please try again.</p>
+                        </SearchResults>
+                    ) : (
+                        <>
+                            {/* Results count */}
+                            {totalResults && (
+                                <SearchResults>
+                                    <p>
+                                        Your search returned {totalResults}{' '}
+                                        results.
+                                    </p>
+                                    <p>
+                                        Can't see what you were looking for? Try
+                                        being more specific.
+                                    </p>
+                                </SearchResults>
+                            )}
+                            {/* Cards */}
+                            {groupedData &&
+                                groupedData.map((year, index) => (
+                                    <Results key={index}>
+                                        <Year>{year[0]}</Year>
+                                        <Cards>
+                                            {year[1].map(
+                                                (show: any, index: number) => (
+                                                    <Card key={index}>
+                                                        <img
+                                                            src={show.Poster}
+                                                            alt={show.Title}
+                                                        />
+                                                        <div>
+                                                            <ShowTitle>
+                                                                {show.Title}
+                                                            </ShowTitle>
+                                                            <p>{show.Year}</p>
+                                                            <a
+                                                                href={`https://www.imdb.com/title/${show.imdbID}`}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                            >
+                                                                See this title
+                                                                on IMDb
+                                                            </a>
+                                                        </div>
+                                                    </Card>
+                                                )
+                                            )}
+                                        </Cards>
+                                    </Results>
+                                ))}
+                        </>
+                    )}
+                </>
             )}
-            {/* Cards */}
-            {groupedData &&
-                groupedData.map((year, index) => (
-                    <Results key={index}>
-                        <Year>{year[0]}</Year>
-                        <Cards>
-                            {year[1].map((show: any, index: number) => (
-                                <Card key={index}>
-                                    <img src={show.Poster} alt={show.Title} />
-                                    <div>
-                                        <ShowTitle>{show.Title}</ShowTitle>
-                                        <p>{show.Year}</p>
-                                        <a
-                                            href={`https://www.imdb.com/title/${show.imdbID}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            See this title on IMDb
-                                        </a>
-                                    </div>
-                                </Card>
-                            ))}
-                        </Cards>
-                    </Results>
-                ))}
         </Wrapper>
     )
 }
